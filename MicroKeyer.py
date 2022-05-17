@@ -1,5 +1,6 @@
 import board
 import digitalio
+import analogio
 
 audioLed = digitalio.DigitalInOut(board.GP6)
 audioLed.direction = digitalio.Direction.OUTPUT
@@ -40,10 +41,11 @@ audioLed.value = True
 pttLed.value = True
 keyLed.value = True
 kbdLed.value = True
+cwLed.value = True
+
 manLed.value = True
 beaconLed.value = True
 pcLed.value = True
-cwLed.value = True
 voiceLed.value = True
 
 pttKey.value = False
@@ -62,3 +64,6 @@ keyA.pull = digitalio.Pull.UP
 keyB = digitalio.DigitalInOut(board.GP17)
 keyB.direction = digitalio.Direction.INPUT
 keyB.pull = digitalio.Pull.UP
+
+keyPad0 = analogio.AnalogIn(board.GP26)
+keyPad1 = analogio.AnalogIn(board.GP27)

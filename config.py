@@ -1,5 +1,5 @@
 # CW SPEED
-ONE_UNIT = 0.06
+ONE_UNIT = 0.05
 TWO_UNITS = 2 * ONE_UNIT
 THREE_UNITS = 3 * ONE_UNIT
 SEVEN_UNITS = 7 * ONE_UNIT
@@ -9,7 +9,7 @@ SPEAKER_VOLUME = 10000 # Internal speaker
 OUTPUT_VOLUME = 2500 # Audio output
 
 # Frequency
-CW_TONE = 600
+CW_TONE = 830
 
 # PTT behavior
 PTT_HANGTIME = 0.3 # For manual keying (paddle and straight)
