@@ -6,19 +6,14 @@ SEVEN_UNITS = 7 * ONE_UNIT
 
 # 10000 maximum volume
 SPEAKER_VOLUME = 10000 # Internal speaker
-OUTPUT_VOLUME = 250 # Audio output
+OUTPUT_VOLUME = 2500 # Audio output
 
 # Frequency
-CW_TONE_SPEAKER = 1200
-CW_TONE_OUTPUT = 600
+CW_TONE = 600
 
 # PTT behavior
-PTT_KEYER = False # Will be depricated soon ... we will have a dedicated CW key output
 PTT_HANGTIME = 0.3 # For manual keying (paddle and straight)
-
-# Keyboard input (or 2nd cw key)
-KBD = False # If False you can add a second cw key (paddle or straight)
-KBD_KEY_PADDLE = True
+PTT_DELAY = 0.05 # For manual keying (paddle and straight)
 
 # CW Memories (for with the keyboard)
 SW1 = "CQ DE ON3URE"

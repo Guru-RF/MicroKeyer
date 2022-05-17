@@ -22,8 +22,8 @@ CODE = {'A': '.-', 'B': '-...', 'C': '-.-.',
         }
 
 # set the output pins, and frequency
-speaker = pwmio.PWMOut(board.GP23, frequency=config.CW_TONE_SPEAKER)
-output = pwmio.PWMOut(board.GP20, frequency=config.CW_TONE_OUTPUT)
+speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
+output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
 
 
 # play tone
@@ -43,28 +43,36 @@ def be_quiet():
 # .
 def dit():
     MicroKeyer.audioLed.value = False
+    MicroKeyer.cwLed.value = False
+    MicroKeyer.cwKey.value = True
     play_tone()
     time.sleep(config.ONE_UNIT)
     be_quiet()
-    time.sleep(config.TWO_UNITS)
+    MicroKeyer.cwKey.value = False
     MicroKeyer.audioLed.value = True
+    MicroKeyer.cwLed.value = True
+    time.sleep(config.TWO_UNITS)
 
 
 # -
 def dah():
     MicroKeyer.audioLed.value = False
+    MicroKeyer.cwLed.value = False
+    MicroKeyer.cwKey.value = True
     play_tone()
     time.sleep(config.THREE_UNITS)
     be_quiet()
-    time.sleep(config.ONE_UNIT)
+    MicroKeyer.cwKey.value = False
     MicroKeyer.audioLed.value = True
+    MicroKeyer.cwLed.value = True
+    time.sleep(config.ONE_UNIT)
 
 
 # TODO ! needs rework with new board "PTT_KEYER" depricated dedicated CW OUT !
 def generate(msg):
-    if config.PTT_KEYER is False:
-        MicroKeyer.pttKey.value = True
-        time.sleep(config.ONE_UNIT)
+    MicroKeyer.pttKey.value = True
+    MicroKeyer.pttLed.value = False
+    time.sleep(config.PTT_DELAY)
     for char in msg:
         if char == ' ':
             # print(' ' * 7)
@@ -75,27 +83,27 @@ def generate(msg):
                 if cw == '.':
                     # print(cw)
                     MicroKeyer.audioLed.value = False
-                    if config.PTT_KEYER is True:
-                        MicroKeyer.pttKey.value = True
+                    MicroKeyer.cwLed.value = False
+                    MicroKeyer.cwKey.value = True
                     play_tone()
                     time.sleep(config.ONE_UNIT)
                     be_quiet()
                     MicroKeyer.audioLed.value = True
-                    if config.PTT_KEYER is True:
-                        MicroKeyer.pttKey.value = False
+                    MicroKeyer.cwLed.value = True
+                    MicroKeyer.cwKey.value = False
                     time.sleep(config.ONE_UNIT)
                 if cw == '-':
                     # print(cw)
                     MicroKeyer.audioLed.value = False
-                    if config.PTT_KEYER is True:
-                        MicroKeyer.pttKey.value = True
+                    MicroKeyer.cwLed.value = False
+                    MicroKeyer.cwKey.value = True
                     play_tone()
                     time.sleep(config.THREE_UNITS)
                     be_quiet()
+                    MicroKeyer.cwLed.value = True
+                    MicroKeyer.cwKey.value = False
                     MicroKeyer.audioLed.value = True
-                    if config.PTT_KEYER is True:
-                        MicroKeyer.pttKey.value = False
                     time.sleep(config.ONE_UNIT)
             time.sleep(config.SEVEN_UNITS)
-    if config.PTT_KEYER is False:
-        MicroKeyer.pttKey.value = False
+    MicroKeyer.pttKey.value = False
+    MicroKeyer.pttLed.value = True
