@@ -36,35 +36,7 @@ def be_quiet(speaker, output):
     output.duty_cycle = 0
 
 
-# .
-def dit():
-    MicroKeyer.audioLed.value = False
-    MicroKeyer.cwLed.value = False
-    MicroKeyer.cwKey.value = True
-    play_tone()
-    await asyncio.Sleep(config.ONE_UNIT)
-    be_quiet()
-    MicroKeyer.cwKey.value = False
-    MicroKeyer.audioLed.value = True
-    MicroKeyer.cwLed.value = True
-    await asyncio.sleep(config.TWO_UNITS)
 
-
-# -
-def dah():
-    MicroKeyer.audioLed.value = False
-    MicroKeyer.cwLed.value = False
-    MicroKeyer.cwKey.value = True
-    play_tone()
-    time.sleep(config.THREE_UNITS)
-    be_quiet()
-    MicroKeyer.cwKey.value = False
-    MicroKeyer.audioLed.value = True
-    MicroKeyer.cwLed.value = True
-    time.sleep(config.ONE_UNIT)
-
-
-# TODO ! needs rework with new board "PTT_KEYER" depricated dedicated CW OUT !
 def generate(msg):
     speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
     output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)

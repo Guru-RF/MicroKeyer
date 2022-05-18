@@ -5,6 +5,7 @@ import analogio
 import audiocore
 import audiopwmio
 import asyncio
+import time
 
 
 def generate_audio(wavfile):
@@ -16,14 +17,13 @@ def generate_audio(wavfile):
     radioAudio.play(wav)
     while radioAudio.playing:
         pass
-    MicroKeyer.pttKey.value = False
     radioAudio.deinit()
+    MicroKeyer.pttKey.value = False
 
 
 async def run():
     keyPad0 = MicroKeyer.keyPad0
     keyPad1 = MicroKeyer.keyPad1
-
 
     while True:
         await asyncio.sleep(0.01)

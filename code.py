@@ -3,8 +3,9 @@ import asyncio
 import supervisor
 import MicroKeyer
 import config
+import time
 import PC
-import Manual
+import Paddle
 import Voice
 
 apps = ["Manual", "Beacon", "PC", "Voice"]
@@ -15,6 +16,10 @@ if supervisor.runtime.usb_connected:
 
 
 async def menu(apps, app, event_loop):
+  paddleA = asyncio.create_task(Paddle.keyA())
+  paddleB = asyncio.create_task(Paddle.keyB())
+  keyer = asyncio.create_task(Paddle.keyer())
+
   currentIndex = apps.index(app)
   if app == "PC":
     MicroKeyer.pcLed.value = False
@@ -26,7 +31,6 @@ async def menu(apps, app, event_loop):
     MicroKeyer.beaconLed.value = False
   if app == "Manual":
     MicroKeyer.manualLed.value = False
-    app_task = asyncio.create_task(Manual.run())
 
   while(True):
     if MicroKeyer.keyMode.value is False:
@@ -51,12 +55,14 @@ async def menu(apps, app, event_loop):
         MicroKeyer.beaconLed.value = False
       if apps[currentIndex] == "Manual":
         MicroKeyer.manLed.value = False
-        app_task = asyncio.create_task(Manual.run())
       await asyncio.sleep(0.2)
 
     await asyncio.sleep(0.1)
 
 async def main():
+  print("sleeping")
+  time.sleep(1)
+  print("init loops")
   loop = asyncio.get_event_loop()
   menu_task = asyncio.create_task(menu(apps, defaultApp, loop))
 
