@@ -2,11 +2,11 @@ import time
 import config
 import MicroKeyer
 import MorseGenerator
+import asyncio
 
-MicroKeyer.beaconLed.value = False
-
-while True:
-    print("Beacon: Generating Morse: ", config.BEACON)
-    MorseGenerator.generate(config.BEACON)
-    print("Sleeping for ", config.BEACON_SLEEP, " seconds")
-    time.sleep(config.BEACON_SLEEP)
+async def run():
+    while True:
+        print("Beacon: Generating Morse:", config.BEACON)
+        MorseGenerator.generate(config.BEACON)
+        print("Sleeping for", config.BEACON_SLEEP, "seconds")
+        await asyncio.sleep(config.BEACON_SLEEP)

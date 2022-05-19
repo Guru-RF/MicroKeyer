@@ -6,7 +6,10 @@ import config
 import time
 import PC
 import Paddle
+import Manual
 import Voice
+import Beacon
+import PTTToggle
 
 apps = ["Manual", "Beacon", "PC", "Voice"]
 defaultApp = "Manual"
@@ -19,6 +22,7 @@ async def menu(apps, app, event_loop):
   paddleA = asyncio.create_task(Paddle.keyA())
   paddleB = asyncio.create_task(Paddle.keyB())
   keyer = asyncio.create_task(Paddle.keyer())
+  ptttoggle = asyncio.create_task(PTTToggle.run())
 
   currentIndex = apps.index(app)
   if app == "PC":
@@ -28,9 +32,11 @@ async def menu(apps, app, event_loop):
     MicroKeyer.voiceLed.value = False
     app_task = asyncio.create_task(Voice.run())
   if app == "Beacon":
+    app_task = asyncio.create_task(Beacon.run())
     MicroKeyer.beaconLed.value = False
   if app == "Manual":
     MicroKeyer.manualLed.value = False
+    app_task = asyncio.create_task(Manual.run())
 
   while(True):
     if MicroKeyer.keyMode.value is False:
@@ -45,24 +51,26 @@ async def menu(apps, app, event_loop):
       else:
         currentIndex+=1
       print(apps[currentIndex])
-      if apps[currentIndex] == "PC":
+      if apps[currentIndex] == "-> PC Mode":
         MicroKeyer.pcLed.value = False
         app_task = asyncio.create_task(PC.run())
-      if apps[currentIndex] == "Voice":
+      if apps[currentIndex] == "-> Voice Keyer":
         MicroKeyer.voiceLed.value = False
         app_task = asyncio.create_task(Voice.run())
-      if apps[currentIndex] == "Beacon":
+      if apps[currentIndex] == "-> Beacon Mode":
+        app_task = asyncio.create_task(Beacon.run())
         MicroKeyer.beaconLed.value = False
-      if apps[currentIndex] == "Manual":
+      if apps[currentIndex] == "-> Morse Keyer":
+        app_task = asyncio.create_task(Manual.run())
         MicroKeyer.manLed.value = False
       await asyncio.sleep(0.2)
 
     await asyncio.sleep(0.1)
 
 async def main():
-  print("sleeping")
+  print("Intializing MicroKeyer")
   time.sleep(1)
-  print("init loops")
+  print("Lets go async !")
   loop = asyncio.get_event_loop()
   menu_task = asyncio.create_task(menu(apps, defaultApp, loop))
 

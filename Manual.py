@@ -14,8 +14,6 @@ async def run():
 
     # monotonic all the way
     start = time.monotonic()
-    firstA = False
-    firstB = False
 
     while True:
         await asyncio.sleep(0.01)
@@ -29,63 +27,9 @@ async def run():
         pad0 = keyPad0.value
         pad1 = keyPad1.value
 
-        if MicroKeyer.keyA.value is False and MicroKeyer.keyB.value is False and firstB is True:
-            print(".-")
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dit()
-            MicroKeyer.keyLed.value = True
-
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dah()
-            MicroKeyer.keyLed.value = True
-            start = time.monotonic()
-            continue
-
-        if MicroKeyer.keyB.value is False and MicroKeyer.keyA.value is False and firstA is True:
-            print("-.")
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dah()
-            MicroKeyer.keyLed.value = True
-
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dit()
-            MicroKeyer.keyLed.value = True
-            start = time.monotonic()
-            continue
-
-        if MicroKeyer.keyA.value is False:
-            print(".")
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dit()
-            MicroKeyer.keyLed.value = True
-            start = time.monotonic()
-            firstA = True
-            continue
-
-        if MicroKeyer.keyB.value is False:
-            print("-")
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
-            MicroKeyer.keyLed.value = False
-            MorseGenerator.dah()
-            MicroKeyer.keyLed.value = True
-            start = time.monotonic()
-            firstB = True
-            continue
-
         if MicroKeyer.keyA.value is True and MicroKeyer.keyB.value is True:
-            firstA = False
-            firstB = False
+            if 65000 < pad0 < 65550 and 65000 < pad1 < 65550:
+                continue
             if 65000 < pad0 < 65550:
                 MicroKeyer.kbdLed.value = False
                 print("SW1:", config.SW1)
@@ -94,7 +38,7 @@ async def run():
                 continue
             if 60000 < pad0 < 65000:
                 MicroKeyer.kbdLed.value = False
-                print("SW2:", config.SW2)
+                print("Morse Keyer:", config.SW2)
                 MorseGenerator.generate(config.SW2)
                 MicroKeyer.kbdLed.value = True
                 continue
