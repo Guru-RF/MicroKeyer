@@ -18,6 +18,7 @@ def generate_audio(wavfile):
     while radioAudio.playing:
         pass
     radioAudio.deinit()
+
     MicroKeyer.pttKey.value = False
 
 

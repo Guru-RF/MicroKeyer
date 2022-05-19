@@ -8,6 +8,7 @@ SEVEN_UNITS = 7 * ONE_UNIT
 SPEAKER_VOLUME = 10000 # Internal speaker
 OUTPUT_VOLUME = 2500 # Audio output
 
+
 # Frequency
 CW_TONE = 830
 

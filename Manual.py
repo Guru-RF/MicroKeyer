@@ -18,6 +18,7 @@ async def run():
     while True:
         await asyncio.sleep(0.01)
 
+
         # PTT Hang time ... but the clever way
         if start + config.PTT_HANGTIME < time.monotonic():
             MicroKeyer.pttKey.value = False

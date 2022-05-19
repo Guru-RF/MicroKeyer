@@ -31,3 +31,4 @@ async def run():
                 pttState = True
                 print("PTT On")
             await asyncio.sleep(1.5)
+
