@@ -112,6 +112,8 @@ async def keyer():
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -121,10 +123,14 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.TWO_UNITS)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.cwKey.value = False
 
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -134,6 +140,8 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.ONE_UNIT)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.cwKey.value = False
 
             start = time.monotonic()
             continue
@@ -152,6 +160,9 @@ async def keyer():
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.audioLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -161,10 +172,16 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.ONE_UNIT)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.audioLed.value = True
+            MicroKeyer.cwKey.value = False
 
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.audioLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -174,6 +191,9 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.TWO_UNITS)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.audioLed.value = True
+            MicroKeyer.cwKey.value = False
 
             start = time.monotonic()
             continue
@@ -185,6 +205,9 @@ async def keyer():
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.audioLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -194,6 +217,9 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.TWO_UNITS)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.audioLed.value = True
+            MicroKeyer.cwKey.value = False
             start = time.monotonic()
             toneA = False
             continue
@@ -205,6 +231,9 @@ async def keyer():
             MicroKeyer.pttKey.value = True
             MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
+            MicroKeyer.cwLed.value = False
+            MicroKeyer.audioLed.value = False
+            MicroKeyer.cwKey.value = True
             speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
             output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
             MorseGenerator.play_tone(speaker, output)
@@ -214,6 +243,9 @@ async def keyer():
             speaker.deinit()
             await asyncio.sleep(config.ONE_UNIT)
             MicroKeyer.keyLed.value = True
+            MicroKeyer.cwLed.value = True
+            MicroKeyer.audioLed.value = True
+            MicroKeyer.cwKey.value = False
             start = time.monotonic()
             toneB = False
             continue

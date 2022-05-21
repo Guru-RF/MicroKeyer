@@ -14,8 +14,6 @@ import PTTToggle
 apps = ["Manual", "Beacon", "PC", "Voice"]
 defaultApp = "Manual"
 
-if supervisor.runtime.usb_connected:
-    defaultApp = "PC"
 
 
 async def menu(apps, app, event_loop):
@@ -70,6 +68,10 @@ async def menu(apps, app, event_loop):
 async def main():
     print("Intializing MicroKeyer")
     time.sleep(1)
+
+    if supervisor.runtime.usb_connected:
+        defaultApp = "PC"
+
     print("Lets go async !")
     loop = asyncio.get_event_loop()
     menu_task = asyncio.create_task(menu(apps, defaultApp, loop))
