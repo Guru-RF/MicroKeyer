@@ -1,3 +1,7 @@
+#import usb_midi
+#usb_midi.enable()
+
+
 new_name = "MicroKeyer"
 import storage
 storage.remount("/", readonly=False)

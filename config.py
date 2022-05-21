@@ -8,6 +8,8 @@ SEVEN_UNITS = 7 * ONE_UNIT
 SPEAKER_VOLUME = 10000 # Internal speaker
 OUTPUT_VOLUME = 2500 # Audio output
 
+# Physical Key (STRAIGHT | IAMBIC)
+KEY_TYPE = STRAIGHT
 
 # Frequency
 CW_TONE = 830
@@ -27,7 +29,7 @@ SW7 = "ON6WJ"
 SW8 = "ON4IT"
 
 # Voice Memories (for with the keyboard)
-# 16bit 16khz mono is more then sufficient (22khz will work to)
+# 16bit 22khz mono is more then sufficient (higher sample rate will work to)
 VSW1 = "on3ure.wav"
 VSW2 = "2.wav"
 VSW3 = "3.wav"
