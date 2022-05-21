@@ -72,17 +72,15 @@ async def keyer():
 
     ditdah = False
     dahdit = False
+
     # monotonic all the way
     start = time.monotonic()
 
     while True:
         await asyncio.sleep(0.005)
 
-        # PTT Hang time ... but the clever way
-        #
         if start + config.PTT_HANGTIME < time.monotonic():
-            MicroKeyer.pttKey.value = False
-            MicroKeyer.pttLed.value = True
+            MicroKeyer.PTTstate.value = True
             start = time.monotonic()
 
         # reset ditdah or dahdit
@@ -109,8 +107,10 @@ async def keyer():
             dahdit = False
 
             print(".A-B")
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
+            if MicroKeyer.pttKey.value is False:
+                MicroKeyer.pttKey.value = True
+                MicroKeyer.pttLed.value = False
+                await asyncio.sleep(config.PTT_DELAY)
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.cwKey.value = True
@@ -126,8 +126,6 @@ async def keyer():
             MicroKeyer.cwLed.value = True
             MicroKeyer.cwKey.value = False
 
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.cwKey.value = True
@@ -157,8 +155,10 @@ async def keyer():
 
             print("-B.A")
 
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
+            if MicroKeyer.pttKey.value is False:
+                MicroKeyer.pttKey.value = True
+                MicroKeyer.pttLed.value = False
+                await asyncio.sleep(config.PTT_DELAY)
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.audioLed.value = False
@@ -176,8 +176,6 @@ async def keyer():
             MicroKeyer.audioLed.value = True
             MicroKeyer.cwKey.value = False
 
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.audioLed.value = False
@@ -202,8 +200,10 @@ async def keyer():
         if keyA is True:
             print(".A")
             toneA = True
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
+            if MicroKeyer.pttKey.value is False:
+                MicroKeyer.pttKey.value = True
+                MicroKeyer.pttLed.value = False
+                await asyncio.sleep(config.PTT_DELAY)
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.audioLed.value = False
@@ -220,16 +220,19 @@ async def keyer():
             MicroKeyer.cwLed.value = True
             MicroKeyer.audioLed.value = True
             MicroKeyer.cwKey.value = False
-            start = time.monotonic()
             toneA = False
+
+            start = time.monotonic()
             continue
 
         # dah
         if keyB is True:
             print("-B")
             toneB = True
-            MicroKeyer.pttKey.value = True
-            MicroKeyer.pttLed.value = False
+            if MicroKeyer.pttKey.value is False:
+                MicroKeyer.pttKey.value = True
+                MicroKeyer.pttLed.value = False
+                await asyncio.sleep(config.PTT_DELAY)
             MicroKeyer.keyLed.value = False
             MicroKeyer.cwLed.value = False
             MicroKeyer.audioLed.value = False
@@ -246,7 +249,8 @@ async def keyer():
             MicroKeyer.cwLed.value = True
             MicroKeyer.audioLed.value = True
             MicroKeyer.cwKey.value = False
-            start = time.monotonic()
             toneB = False
+
+            start = time.monotonic()
             continue
 

@@ -13,8 +13,8 @@ OUTPUT_VOLUME = 2500 # Audio output
 CW_TONE = 830
 
 # PTT behavior
-PTT_HANGTIME = 0.3 # For manual keying (paddle and straight)
-PTT_DELAY = 0.05 # For manual keying (paddle and straight)
+PTT_HANGTIME = 1 # For manual keying (paddle and straight)
+PTT_DELAY = 0.5 # For manual keying (paddle and straight)
 
 # CW Memories (for with the keyboard)
 SW1 = "CQ DE ON3URE"

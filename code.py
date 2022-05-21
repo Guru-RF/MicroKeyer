@@ -10,6 +10,7 @@ import Manual
 import Voice
 import Beacon
 import PTTToggle
+import HangTime
 
 apps = ["Manual", "Beacon", "PC", "Voice"]
 defaultApp = "Manual"
@@ -21,6 +22,7 @@ async def menu(apps, app, event_loop):
     paddleB = asyncio.create_task(Paddle.keyB())
     keyer = asyncio.create_task(Paddle.keyer())
     ptttoggle = asyncio.create_task(PTTToggle.run())
+    hangtime = asyncio.create_task(HangTime.run())
 
     currentIndex = apps.index(app)
     if app == "PC":
@@ -70,6 +72,7 @@ async def main():
     time.sleep(1)
 
     if supervisor.runtime.usb_connected:
+        supervisor.disable_autoreload()
         defaultApp = "PC"
 
     print("Lets go async !")

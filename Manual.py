@@ -12,18 +12,8 @@ async def run():
     keyPad0 = MicroKeyer.keyPad0
     keyPad1 = MicroKeyer.keyPad1
 
-    # monotonic all the way
-    start = time.monotonic()
-
     while True:
         await asyncio.sleep(0.01)
-
-
-        # PTT Hang time ... but the clever way
-        if start + config.PTT_HANGTIME < time.monotonic():
-            MicroKeyer.pttKey.value = False
-            MicroKeyer.pttLed.value = True
-            start = time.monotonic()
 
         pad0 = keyPad0.value
         pad1 = keyPad1.value

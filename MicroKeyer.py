@@ -38,6 +38,9 @@ pttKey.direction = digitalio.Direction.OUTPUT
 cwKey = digitalio.DigitalInOut(board.GP11)
 cwKey.direction = digitalio.Direction.OUTPUT
 
+PTTstate = digitalio.DigitalInOut(board.GP15)
+PTTstate.direction = digitalio.Direction.OUTPUT
+
 audioLed.value = True
 pttLed.value = True
 keyLed.value = True

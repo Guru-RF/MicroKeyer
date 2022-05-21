@@ -41,9 +41,10 @@ def generate(msg):
     speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
     output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
 
-    MicroKeyer.pttKey.value = True
-    MicroKeyer.pttLed.value = False
-    time.sleep(config.PTT_DELAY)
+    if MicroKeyer.pttKey.value is False:
+        MicroKeyer.pttKey.value = True
+        MicroKeyer.pttLed.value = False
+        time.sleep(config.PTT_DELAY)
     try:
         for char in msg:
             if char == ' ':
@@ -80,7 +81,6 @@ def generate(msg):
     except KeyError:
         return
 
-    MicroKeyer.pttKey.value = False
-    MicroKeyer.pttLed.value = True
     output.deinit()
     speaker.deinit()
+    MicroKeyer.PTTstate.value = True
