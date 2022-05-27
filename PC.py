@@ -5,8 +5,6 @@ import supervisor
 import asyncio
 import sys
 
-MicroKeyer.pcLed.value = False
-
 
 class USBSerialReader:
     """ Read a line from USB Serial (up to end_char), non-blocking, with optional echo """
@@ -34,7 +32,7 @@ async def run():
     print("type text to send:")
     while True:
         msg = usb_reader.read(end_char='\n', echo=True)
-        await asyncio.sleep(0.01)
+        await asyncio.sleep(0.02)
         if msg:
             print("Generating Morse", msg)
             MorseGenerator.generate(msg)

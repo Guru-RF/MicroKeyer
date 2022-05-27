@@ -23,49 +23,49 @@ async def run():
                 continue
             if 65000 < pad0 < 65550:
                 MicroKeyer.kbdLed.value = False
-                print("SW1:", config.SW1)
+                print("SW1:", config.SW1, pad0)
                 MorseGenerator.generate(config.SW1)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 60000 < pad0 < 65000:
                 MicroKeyer.kbdLed.value = False
-                print("Morse Keyer:", config.SW2)
+                print("Morse Keyer:", config.SW2, pad0)
                 MorseGenerator.generate(config.SW2)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 50000 < pad0 < 60000:
                 MicroKeyer.kbdLed.value = False
-                print("SW3:", config.SW3)
+                print("SW3:", config.SW3, pad0)
                 MorseGenerator.generate(config.SW3)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 40000 < pad0 < 50000:
                 MicroKeyer.kbdLed.value = False
-                print("SW4:", config.SW4)
+                print("SW4:", config.SW4, pad0)
                 MorseGenerator.generate(config.SW4)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 65000 < pad1 < 65550:
                 MicroKeyer.kbdLed.value = False
-                print("SW5:", config.SW5)
+                print("SW5:", config.SW5, pad1)
                 MorseGenerator.generate(config.SW5)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 60000 < pad1 < 65000:
                 MicroKeyer.kbdLed.value = False
-                print("SW6:", config.SW6)
+                print("SW6:", config.SW6, pad1)
                 MorseGenerator.generate(config.SW6)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 50000 < pad1 < 60000:
                 MicroKeyer.kbdLed.value = False
-                print("SW7:", config.SW7)
+                print("SW7:", config.SW7, pad1)
                 MorseGenerator.generate(config.SW7)
                 MicroKeyer.kbdLed.value = True
                 continue
             if 40000 < pad1 < 50000:
                 MicroKeyer.kbdLed.value = False
-                print("SW8:", config.SW8)
+                print("SW8:", config.SW8, pad1)
                 MorseGenerator.generate(config.SW8)
                 MicroKeyer.kbdLed.value = True
                 continue

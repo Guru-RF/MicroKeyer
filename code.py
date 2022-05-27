@@ -1,6 +1,5 @@
 # Need to implement threading on one button to select (load/unload different modules)
 import asyncio
-import supervisor
 import MicroKeyer
 import config
 import time
@@ -13,18 +12,18 @@ import PTTToggle
 import HangTime
 
 apps = ["Manual", "Beacon", "PC", "Voice"]
-defaultApp = "Manual"
 
 
 
 async def menu(apps, app, event_loop):
+    hangtime = asyncio.create_task(HangTime.run())
     paddleA = asyncio.create_task(Paddle.keyA())
     paddleB = asyncio.create_task(Paddle.keyB())
     keyer = asyncio.create_task(Paddle.keyer())
     ptttoggle = asyncio.create_task(PTTToggle.run())
-    hangtime = asyncio.create_task(HangTime.run())
 
     currentIndex = apps.index(app)
+    print(currentIndex)
     if app == "PC":
         MicroKeyer.pcLed.value = False
         app_task = asyncio.create_task(PC.run())
@@ -71,13 +70,9 @@ async def main():
     print("Intializing MicroKeyer")
     time.sleep(1)
 
-    if supervisor.runtime.usb_connected:
-        supervisor.disable_autoreload()
-        defaultApp = "PC"
-
     print("Lets go async !")
     loop = asyncio.get_event_loop()
-    menu_task = asyncio.create_task(menu(apps, defaultApp, loop))
+    menu_task = asyncio.create_task(menu(apps, config.DEFAULT, loop))
 
     loop.run_until_complete(menu_task)
     loop.close()

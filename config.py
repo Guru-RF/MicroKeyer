@@ -1,5 +1,8 @@
+# Default app
+DEFAULT = "Manual"
+
 # CW SPEED
-ONE_UNIT = 0.05
+ONE_UNIT = 0.09
 TWO_UNITS = 2 * ONE_UNIT
 THREE_UNITS = 3 * ONE_UNIT
 SEVEN_UNITS = 7 * ONE_UNIT
@@ -9,21 +12,21 @@ SPEAKER_VOLUME = 10000 # Internal speaker
 OUTPUT_VOLUME = 2500 # Audio output
 
 # Physical Key (STRAIGHT | IAMBIC)
-KEY_TYPE = STRAIGHT
+KEY_TYPE = "STRAIGHT"
 
 # Frequency
 CW_TONE = 830
 
 # PTT behavior
 PTT_HANGTIME = 1 # For manual keying (paddle and straight)
-PTT_DELAY = 0.5 # For manual keying (paddle and straight)
+PTT_DELAY = 1 # For manual keying (paddle and straight)
 
 # CW Memories (for with the keyboard)
 SW1 = "CQ DE ON3URE"
 SW2 = "73 DE ON3URE"
 SW3 = "ON3URE"
 SW4 = "QTH MERCHTEM BELGIUM"
-SW5 = "599"
+SW5 = "5nn"
 SW6 = "ON4AOW"
 SW7 = "ON6WJ"
 SW8 = "ON4IT"
