@@ -3,24 +3,25 @@ import config
 import time
 import board
 import pwmio
+import Morse
 import asyncio
 
-# The secret CW morse code (not so secret after all ;))
-CODE = {'A': '.-', 'B': '-...', 'C': '-.-.',
-        'D': '-..', 'E': '.', 'F': '..-.',
-        'G': '--.', 'H': '....', 'I': '..',
-        'J': '.---', 'K': '-.-', 'L': '.-..',
-        'M': '--', 'N': '-.', 'O': '---',
-        'P': '.--.', 'Q': '--.-', 'R': '.-.',
-        'S': '...', 'T': '-', 'U': '..-',
-        'V': '...-', 'W': '.--', 'X': '-..-',
-        'Y': '-.--', 'Z': '--..',
-
-        '0': '-----', '1': '.----', '2': '..---',
-        '3': '...--', '4': '....-', '5': '.....',
-        '6': '-....', '7': '--...', '8': '---..',
-        '9': '----.'
-        }
+## The secret CW morse code (not so secret after all ;))
+#CODE = {'A': '.-', 'B': '-...', 'C': '-.-.',
+#        'D': '-..', 'E': '.', 'F': '..-.',
+#        'G': '--.', 'H': '....', 'I': '..',
+#        'J': '.---', 'K': '-.-', 'L': '.-..',
+#        'M': '--', 'N': '-.', 'O': '---',
+#        'P': '.--.', 'Q': '--.-', 'R': '.-.',
+#        'S': '...', 'T': '-', 'U': '..-',
+#        'V': '...-', 'W': '.--', 'X': '-..-',
+#        'Y': '-.--', 'Z': '--..',
+#
+#        '0': '-----', '1': '.----', '2': '..---',
+#        '3': '...--', '4': '....-', '5': '.....',
+#        '6': '-....', '7': '--...', '8': '---..',
+#        '9': '----.'
+#        }
 
 
 # play tone
@@ -52,9 +53,10 @@ def generate(msg):
                 time.sleep(config.SEVEN_UNITS)
             else:
                 # print(char)
-                    for cw in CODE[char.upper()]:
+                #   for cw in CODE[char.upper()]:
+                    for cw in Morse.encode(char.lower()):
                         if cw == '.':
-                            # print(cw)
+                            print(cw, end="")
                             MicroKeyer.audioLed.value = False
                             MicroKeyer.cwLed.value = False
                             MicroKeyer.cwKey.value = True
@@ -66,7 +68,7 @@ def generate(msg):
                             MicroKeyer.cwKey.value = False
                             time.sleep(config.ONE_UNIT)
                         if cw == '-':
-                            # print(cw)
+                            print(cw, end="")
                             MicroKeyer.audioLed.value = False
                             MicroKeyer.cwLed.value = False
                             MicroKeyer.cwKey.value = True
@@ -78,6 +80,7 @@ def generate(msg):
                             MicroKeyer.audioLed.value = True
                             time.sleep(config.ONE_UNIT)
                     time.sleep(config.SEVEN_UNITS)
+                    print()
     except KeyError:
         return
 

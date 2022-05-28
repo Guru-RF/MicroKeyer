@@ -15,7 +15,7 @@ async def run():
 
         # PTT Hang time ... but the clever way
         if MicroKeyer.pttKey.value is True and MicroKeyer.PTTstate.value is True:
-            print("Hangtime")
+            #print("Hangtime")
             await asyncio.sleep(config.PTT_HANGTIME)
             MicroKeyer.pttLed.value = True
             MicroKeyer.pttKey.value = False
