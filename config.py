@@ -1,6 +1,9 @@
 # Default app
 DEFAULT = "Manual"
 
+# Decode to HID / USB Keyboard
+KEYBOARD = True
+
 # CW SPEED
 ONE_UNIT = 0.09
 TWO_UNITS = 2 * ONE_UNIT

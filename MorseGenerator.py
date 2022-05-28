@@ -49,7 +49,7 @@ def generate(msg):
     try:
         for char in msg:
             if char == ' ':
-                # print(' ' * 7)
+                print("␍")
                 time.sleep(config.SEVEN_UNITS)
             else:
                 # print(char)
@@ -79,8 +79,8 @@ def generate(msg):
                             MicroKeyer.cwKey.value = False
                             MicroKeyer.audioLed.value = True
                             time.sleep(config.ONE_UNIT)
+                    print("\t\t\t", char.lower())
                     time.sleep(config.SEVEN_UNITS)
-                    print()
     except KeyError:
         return
 

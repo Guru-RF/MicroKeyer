@@ -7,7 +7,7 @@ def encode(char):
     elif char.lower() in encodings:
         return encodings[char.lower()]
     else:
-        return ''
+        return '#'
 
 decodings = {}
 def decode(char):
@@ -15,7 +15,7 @@ def decode(char):
     if char in decodings:
         return decodings[char]
     else:
-        return '('+char+'?)'
+        return '#'
 
 def MAP(pattern, letter):
     decodings[pattern] = letter
@@ -73,5 +73,4 @@ MAP('.-.-.', '+')  # /AR stop (end of message)
 MAP('.-...', '&')  # /AS wait
 MAP('...-.-', '|')  # /SK end of contact
 MAP('...-.', '*')  # /SN understood
-MAP('.......', '#')  # error
 

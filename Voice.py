@@ -60,6 +60,6 @@ async def run():
         if 50000 < pad1 < 60000:
             generate_audio(config.VSW7)
             continue
-        if 40000 < pad1 < 50000:
+        if 30000 < pad1 < 50000:
             generate_audio(config.VSW8)
             continue

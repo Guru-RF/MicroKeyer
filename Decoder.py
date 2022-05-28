@@ -8,7 +8,13 @@ import asyncio
 import board
 import pwmio
 import Morse
+import usb_hid
+from adafruit_hid.keyboard import Keyboard
+from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+from adafruit_hid.keycode import Keycode
 
+keyboard = Keyboard(usb_hid.devices)
+keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
 
 async def run():
 
@@ -22,7 +28,9 @@ async def run():
         await asyncio.sleep(0.005)
 
         if decodeLetter is True:
-            print(Morse.decode(toDecode))
+            print("\t\t\t", Morse.decode(toDecode))
+            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True:
+                keyboard_layout.write(Morse.decode(toDecode))
             toDecode = ""
             decodeLetter = False
             checkSpace = True
@@ -38,7 +46,7 @@ async def run():
 
         if MicroKeyer.iambicBstate.value is True:
             if word is False:
-                print("")
+                #print("")
                 word = True
             start = time.monotonic()
             toDecode += "."
@@ -46,7 +54,9 @@ async def run():
             MicroKeyer.iambicBstate.value = False
 
         if checkSpace is True and ((start + config.SEVEN_UNITS + config.ONE_UNIT) < time.monotonic()):
-            print(" SPACE ")
+            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True:
+                keyboard_layout.write(" ")
+            print("␍")
             checkSpace = False
 
         if word is True and ((start + config.THREE_UNITS + config.TWO_UNITS) < time.monotonic()):
