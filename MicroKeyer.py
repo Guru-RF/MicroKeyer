@@ -41,6 +41,9 @@ cwKey.direction = digitalio.Direction.OUTPUT
 PTTstate = digitalio.DigitalInOut(board.GP15)
 PTTstate.direction = digitalio.Direction.OUTPUT
 
+PTT = digitalio.DigitalInOut(board.GP1)
+PTT.direction = digitalio.Direction.OUTPUT
+
 iambicAstate = digitalio.DigitalInOut(board.GP20)
 iambicAstate.direction = digitalio.Direction.OUTPUT
 
@@ -67,13 +70,13 @@ keyMode = digitalio.DigitalInOut(board.GP18)
 keyMode.direction = digitalio.Direction.INPUT
 keyMode.pull = digitalio.Pull.UP
 
-keyA = digitalio.DigitalInOut(board.GP16)
-keyA.direction = digitalio.Direction.INPUT
-keyA.pull = digitalio.Pull.UP
+keyDIT = digitalio.DigitalInOut(board.GP16)
+keyDIT.direction = digitalio.Direction.INPUT
+keyDIT.pull = digitalio.Pull.UP
 
-keyB = digitalio.DigitalInOut(board.GP17)
-keyB.direction = digitalio.Direction.INPUT
-keyB.pull = digitalio.Pull.UP
+keyDAH = digitalio.DigitalInOut(board.GP17)
+keyDAH.direction = digitalio.Direction.INPUT
+keyDAH.pull = digitalio.Pull.UP
 
 keyPad0 = analogio.AnalogIn(board.GP26)
 keyPad1 = analogio.AnalogIn(board.GP27)
