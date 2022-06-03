@@ -1,4 +1,4 @@
-# Need to implement threading on one button to select (load/unload different modules)
+import supervisor
 import asyncio
 import MicroKeyer
 import config

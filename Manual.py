@@ -21,7 +21,7 @@ async def run():
         if MicroKeyer.keyDAH.value is True and MicroKeyer.keyDIT.value is True:
             if 50000 < pad0 < 65550 and 50000 < pad1 < 65550:
                 continue
-            if 65000 < pad0 < 65550:
+            if 65000 < pad0 < 65555:
                 MicroKeyer.kbdLed.value = False
                 print("SW1:", config.SW1, pad0)
                 MorseGenerator.generate(config.SW1)
@@ -45,7 +45,7 @@ async def run():
                 MorseGenerator.generate(config.SW4)
                 MicroKeyer.kbdLed.value = True
                 continue
-            if 65000 < pad1 < 65550:
+            if 65000 < pad1 < 65555:
                 MicroKeyer.kbdLed.value = False
                 print("SW5:", config.SW5, pad1)
                 MorseGenerator.generate(config.SW5)

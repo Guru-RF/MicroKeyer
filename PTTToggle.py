@@ -1,3 +1,4 @@
+import supervisor
 import board
 import time
 import config
@@ -7,18 +8,24 @@ import analogio
 import asyncio
 import board
 import pwmio
-import usb_hid
-from adafruit_hid.keyboard import Keyboard
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-from adafruit_hid.keycode import Keycode
 
-keyboard = Keyboard(usb_hid.devices)
-keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+keyPresses = False
+
+if supervisor.runtime.serial_connected:
+    import usb_hid
+    from adafruit_hid.keyboard import Keyboard
+    from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+    from adafruit_hid.keycode import Keycode
+
+    keyboard = Keyboard(usb_hid.devices)
+    keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+    keyPresses = True
 
 pttState = False
 
 async def run():
     global pttState
+    global keyPresses
 
     keyPad0 = MicroKeyer.keyPad0
     keyPad1 = MicroKeyer.keyPad1
@@ -30,7 +37,7 @@ async def run():
         pad1 = keyPad1.value
 
         if 50000 < pad0 < 65550 and 50000 < pad1 < 65550:
-            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True and config.PTT_KBD_ENTER is True:
+            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True and config.PTT_KBD_ENTER is True and keyPresses is True:
                 print("Press Enter", pad0, pad1)
                 keyboard_layout.write("\n")
                 await asyncio.sleep(1.5)

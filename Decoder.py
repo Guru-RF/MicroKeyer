@@ -8,15 +8,23 @@ import asyncio
 import board
 import pwmio
 import Morse
-import usb_hid
-from adafruit_hid.keyboard import Keyboard
-from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-from adafruit_hid.keycode import Keycode
+import supervisor
 
-keyboard = Keyboard(usb_hid.devices)
-keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+keyPresses = False
+
+if supervisor.runtime.usb_connected is True:
+    import usb_hid
+    from adafruit_hid.keyboard import Keyboard
+    from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
+    from adafruit_hid.keycode import Keycode
+
+    keyboard = Keyboard(usb_hid.devices)
+    keyboard_layout = KeyboardLayoutUS(keyboard)  # We're in the US :)
+    keyPresses = True
+
 
 async def run():
+    global keyPresses
 
     word = False
     decodeLetter = False
@@ -29,7 +37,7 @@ async def run():
 
         if decodeLetter is True:
             print("\t\t\t", Morse.decode(toDecode))
-            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True:
+            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True and keyPresses is True:
                 keyboard_layout.write(Morse.decode(toDecode))
             toDecode = ""
             decodeLetter = False
@@ -54,7 +62,7 @@ async def run():
             MicroKeyer.iambicBstate.value = False
 
         if checkSpace is True and ((start + config.SEVEN_UNITS + config.ONE_UNIT) < time.monotonic()):
-            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True:
+            if MicroKeyer.pcLed.value is False and config.KEYBOARD is True and keyPresses is True:
                 keyboard_layout.write(" ")
             print("␍")
             checkSpace = False

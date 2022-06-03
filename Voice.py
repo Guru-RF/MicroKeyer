@@ -39,27 +39,27 @@ async def run():
         pad0 = keyPad0.value
         pad1 = keyPad1.value
 
-        if pad0 > 65000:
+        if 65000 < pad0 < 65555:
             generate_audio(config.VSW1)
             continue
-        if 60000 < pad0 < 65000:
+        if 55000 < pad0 < 65000:
             generate_audio(config.VSW2)
             continue
-        if 50000 < pad0 < 60000:
+        if 45000 < pad0 < 55000:
             generate_audio(config.VSW3)
             continue
-        if 40000 < pad0 < 50000:
+        if 30000 < pad0 < 40000:
             generate_audio(config.VSW4)
             continue
-        if pad1 > 65000:
+        if 65000 < pad1 < 65555:
             generate_audio(config.VSW5)
             continue
-        if 60000 < pad1 < 65000:
+        if 55000 < pad1 < 65000:
             generate_audio(config.VSW6)
             continue
-        if 50000 < pad1 < 60000:
+        if 45000 < pad1 < 55000:
             generate_audio(config.VSW7)
             continue
-        if 30000 < pad1 < 50000:
+        if 30000 < pad1 < 40000:
             generate_audio(config.VSW8)
             continue
