@@ -1,7 +1,6 @@
 import board
 import config
 import MicroKeyer
-import analogio
 import audiocore
 import audiopwmio
 import asyncio
@@ -34,7 +33,7 @@ async def run():
     keyPad1 = MicroKeyer.keyPad1
 
     while True:
-        await asyncio.sleep(0.01)
+        await asyncio.sleep(0.05)
 
         pad0 = keyPad0.value
         pad1 = keyPad1.value

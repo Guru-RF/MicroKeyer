@@ -4,24 +4,6 @@ import time
 import board
 import pwmio
 import Morse
-import asyncio
-
-## The secret CW morse code (not so secret after all ;))
-#CODE = {'A': '.-', 'B': '-...', 'C': '-.-.',
-#        'D': '-..', 'E': '.', 'F': '..-.',
-#        'G': '--.', 'H': '....', 'I': '..',
-#        'J': '.---', 'K': '-.-', 'L': '.-..',
-#        'M': '--', 'N': '-.', 'O': '---',
-#        'P': '.--.', 'Q': '--.-', 'R': '.-.',
-#        'S': '...', 'T': '-', 'U': '..-',
-#        'V': '...-', 'W': '.--', 'X': '-..-',
-#        'Y': '-.--', 'Z': '--..',
-#
-#        '0': '-----', '1': '.----', '2': '..---',
-#        '3': '...--', '4': '....-', '5': '.....',
-#        '6': '-....', '7': '--...', '8': '---..',
-#        '9': '----.'
-#        }
 
 
 # play tone
@@ -37,7 +19,6 @@ def be_quiet(speaker, output):
     output.duty_cycle = 0
 
 
-
 def generate(msg):
     speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
     output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
@@ -49,7 +30,7 @@ def generate(msg):
     try:
         for char in msg:
             if char == ' ':
-                print("␍")
+                print("␍", end="")
                 time.sleep(config.SEVEN_UNITS)
             else:
                 # print(char)
@@ -79,8 +60,8 @@ def generate(msg):
                             MicroKeyer.cwKey.value = False
                             MicroKeyer.audioLed.value = True
                             time.sleep(config.ONE_UNIT)
-                    print("\t\t\t", char.lower())
-                    time.sleep(config.SEVEN_UNITS)
+            print("\t\t\t", char.lower())
+            time.sleep(config.SEVEN_UNITS)
     except KeyError:
         return
 

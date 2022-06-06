@@ -1,5 +1,3 @@
-import time
-import MicroKeyer
 import MorseGenerator
 import supervisor
 import asyncio
@@ -32,7 +30,7 @@ async def run():
     print("type text to send:")
     while True:
         msg = usb_reader.read(end_char='\n', echo=True)
-        await asyncio.sleep(0.02)
+        await asyncio.sleep(0.05)
         if msg:
             print("Generating Morse", msg)
             MorseGenerator.generate(msg)

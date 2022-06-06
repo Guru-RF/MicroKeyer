@@ -1,4 +1,3 @@
-import supervisor
 import asyncio
 import MicroKeyer
 import config
@@ -19,14 +18,14 @@ apps = ["Manual", "Beacon", "PC", "Voice"]
 async def menu(apps, app, event_loop):
     print("Init Hangtime")
     hangtime = asyncio.create_task(HangTime.run())
-    print("Init Iambic B")
+    print("Init Iambic B Keyer")
     paddleDah = asyncio.create_task(Paddle.PaddleKeyDah())
     paddleDit = asyncio.create_task(Paddle.PaddleKeyDit())
     print("Init Keyer")
     keyer = asyncio.create_task(Paddle.keyer())
     print("Init PTT Toggle")
     ptttoggle = asyncio.create_task(PTTToggle.run())
-    print("Iambic decoder")
+    print("Init Iambic decoder")
     decoder = asyncio.create_task(Decoder.run())
 
     currentIndex = apps.index(app)

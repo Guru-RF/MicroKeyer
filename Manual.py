@@ -1,9 +1,6 @@
-import board
-import time
 import config
 import MicroKeyer
 import MorseGenerator
-import analogio
 import asyncio
 
 
@@ -13,13 +10,14 @@ async def run():
     keyPad1 = MicroKeyer.keyPad1
 
     while True:
-        await asyncio.sleep(0.01)
+        await asyncio.sleep(0.05)
 
         pad0 = keyPad0.value
         pad1 = keyPad1.value
 
         if MicroKeyer.keyDAH.value is True and MicroKeyer.keyDIT.value is True:
-            if 50000 < pad0 < 65550 and 50000 < pad1 < 65550:
+            if 48000 < pad0 < 65555 and 48000 < pad1 < 65555:
+                await asyncio.sleep(0.05)
                 continue
             if 65000 < pad0 < 65555:
                 MicroKeyer.kbdLed.value = False
