@@ -92,16 +92,16 @@ async def keyer():
             dahdit = False
             firstDIT = False
             firstDAH = False
-        else:
-            print("ditdah", ditdah, "dahdit", dahdit, "keyDIT", keyDIT, "keyDAH", keyDAH, "firstDIT", firstDIT,
-                  "firstDAH", firstDAH)
+        #else:
+            #print("ditdah", ditdah, "dahdit", dahdit, "keyDIT", keyDIT, "keyDAH", keyDAH, "firstDIT", firstDIT,
+            #      "firstDAH", firstDAH)
 
         # dit
         if keyDIT is True or firstDIT is True:
             if firstDIT is True:
                 keyDIT = False
                 firstDIT = False
-            print(".A")
+            #print(".A")
             toneDIT = True
             if MicroKeyer.pttKey.value is False:
                 MicroKeyer.pttKey.value = True
@@ -135,7 +135,7 @@ async def keyer():
             if firstDAH is True:
                 keyDAH = False
                 firstDAH = False
-            print("-B")
+            #print("-B")
             toneDAH = True
             if MicroKeyer.pttKey.value is False:
                 MicroKeyer.pttKey.value = True
