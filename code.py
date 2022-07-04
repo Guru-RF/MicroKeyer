@@ -11,6 +11,7 @@ import PTTToggle
 import HangTime
 import Decoder
 
+
 apps = ["Manual", "Beacon", "PC", "Voice"]
 
 
@@ -27,6 +28,7 @@ async def menu(apps, app, event_loop):
     ptttoggle = asyncio.create_task(PTTToggle.run())
     print("Init Iambic decoder")
     decoder = asyncio.create_task(Decoder.run())
+
 
     currentIndex = apps.index(app)
     if app == "PC":

@@ -7,20 +7,17 @@ import Morse
 
 
 # play tone
-def play_tone(speaker, output):
-    speaker.duty_cycle = config.SPEAKER_VOLUME
+def play_tone(output):
     output.duty_cycle = config.OUTPUT_VOLUME
 
 
 # be silent
-def be_quiet(speaker, output):
+def be_quiet(output):
     # Set minimum volume
-    speaker.duty_cycle = 0
     output.duty_cycle = 0
 
 
 def generate(msg):
-    speaker = pwmio.PWMOut(board.GP25, frequency=config.CW_TONE)
     output = pwmio.PWMOut(board.GP24, frequency=config.CW_TONE)
 
     if MicroKeyer.pttKey.value is False:
@@ -41,9 +38,9 @@ def generate(msg):
                             MicroKeyer.audioLed.value = False
                             MicroKeyer.cwLed.value = False
                             MicroKeyer.cwKey.value = True
-                            play_tone(speaker, output)
+                            play_tone(output)
                             time.sleep(config.ONE_UNIT)
-                            be_quiet(speaker, output)
+                            be_quiet(output)
                             MicroKeyer.audioLed.value = True
                             MicroKeyer.cwLed.value = True
                             MicroKeyer.cwKey.value = False
@@ -53,9 +50,9 @@ def generate(msg):
                             MicroKeyer.audioLed.value = False
                             MicroKeyer.cwLed.value = False
                             MicroKeyer.cwKey.value = True
-                            play_tone(speaker, output)
+                            play_tone(output)
                             time.sleep(config.THREE_UNITS)
-                            be_quiet(speaker, output)
+                            be_quiet(output)
                             MicroKeyer.cwLed.value = True
                             MicroKeyer.cwKey.value = False
                             MicroKeyer.audioLed.value = True
@@ -66,5 +63,4 @@ def generate(msg):
         return
 
     output.deinit()
-    speaker.deinit()
     MicroKeyer.PTTstate.value = True
