@@ -4,6 +4,7 @@ import time
 import board
 import pwmio
 import Morse
+import OLED
 
 
 # play tone
@@ -58,6 +59,7 @@ def generate(msg):
                             MicroKeyer.audioLed.value = True
                             time.sleep(config.ONE_UNIT)
             print("\t\t\t", char.lower())
+	    OLED.printDb(char.lower())
             time.sleep(config.SEVEN_UNITS)
     except KeyError:
         return

@@ -10,6 +10,7 @@ import Beacon
 import PTTToggle
 import HangTime
 import Decoder
+import OLED
 
 
 apps = ["Manual", "Beacon", "PC", "Voice"]

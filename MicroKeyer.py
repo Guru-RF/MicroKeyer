@@ -12,7 +12,7 @@ pttLed.direction = digitalio.Direction.OUTPUT
 keyLed = digitalio.DigitalInOut(board.GP10)
 keyLed.direction = digitalio.Direction.OUTPUT
 
-cwLed = digitalio.DigitalInOut(board.GP21)
+cwLed = digitalio.DigitalInOut(board.GP5)
 cwLed.direction = digitalio.Direction.OUTPUT
 
 kbdLed = digitalio.DigitalInOut(board.GP13)
@@ -44,10 +44,10 @@ PTTstate.direction = digitalio.Direction.OUTPUT
 PTT = digitalio.DigitalInOut(board.GP1)
 PTT.direction = digitalio.Direction.OUTPUT
 
-iambicAstate = digitalio.DigitalInOut(board.GP20)
+iambicAstate = digitalio.DigitalInOut(board.GP2)
 iambicAstate.direction = digitalio.Direction.OUTPUT
 
-iambicBstate = digitalio.DigitalInOut(board.GP22)
+iambicBstate = digitalio.DigitalInOut(board.GP3)
 iambicBstate.direction = digitalio.Direction.OUTPUT
 
 audioLed.value = True
@@ -80,3 +80,4 @@ keyDAH.pull = digitalio.Pull.UP
 
 keyPad0 = analogio.AnalogIn(board.GP26)
 keyPad1 = analogio.AnalogIn(board.GP27)
+

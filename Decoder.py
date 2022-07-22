@@ -4,6 +4,7 @@ import MicroKeyer
 import asyncio
 import Morse
 import supervisor
+import OLED
 
 if supervisor.runtime.usb_connected is True:
     import usb_hid
@@ -29,6 +30,7 @@ async def run():
 
         if decodeLetter is True:
             print("\t\t\t", Morse.decode(toDecode))
+	    OLED.printDb(Morse.decode(toDecode))
             if MicroKeyer.pcLed.value is False and config.KEYBOARD is True and supervisor.runtime.usb_connected is True:
 
                 keyboard_layout.write(Morse.decode(toDecode))
